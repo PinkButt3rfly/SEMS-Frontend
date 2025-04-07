@@ -21,13 +21,12 @@ const List = () => {
     const fetchLeaves = async () => {
     
         try {
-            const response = await axios.get(`http://localhost:3000/api/leave/${id}/${user.role}`, {
+            const response = await axios.get(`https://sems-backend.vercel.app/api/leave/${id}/${user.role}`, {
                 headers: {
                     "Authorization" : `Bearer ${localStorage.getItem('token')}`
                 }
             });
-            console.log("API Response:", response.data);
-            console.log("Leaves:", response.data.leaves);
+            
             if(response.data.success) {
                setLeaves(response.data.leaves)
             }

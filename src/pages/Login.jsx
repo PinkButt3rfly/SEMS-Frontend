@@ -12,22 +12,18 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(null); // Reset error on new submit
+    setError(null); 
 
     try {
-      const response = await axios.post("http://localhost:3000/api/auth/login", {
+      const response = await axios.post("https://sems-backend.vercel.app/api/auth/login", {
         email,
         password,
-      });
-
-      console.log("Response Data:", response.data); // ✅ Debugging
+      }); 
 
       if (response.data.success) {
         login(response.data.user);
         localStorage.setItem("token", response.data.token);
 
-        // ✅ Debugging navigation
-        console.log("Navigating to:", response.data.user.role === "admin" ? "/admin-dashboard" : "/employee-dashboard");
 
         if (response.data.user.role === "admin") {
           navigate("/admin-dashboard");
@@ -36,7 +32,6 @@ const Login = () => {
         }
       }
     } catch (error) {
-      console.error("Login Error:", error); // ✅ Debugging
 
       if (error.response && error.response.data) {
         setError(error.response.data.error);
@@ -61,7 +56,7 @@ const Login = () => {
               type="email"
               className="w-full rounded-md px-3 py-2 border"
               placeholder="Enter Email"
-              value={email} // ✅ Ensure input value is updated
+              value={email} 
               onChange={(e) => setEmail(e.target.value)}
               required
             />
@@ -74,7 +69,7 @@ const Login = () => {
               type="password"
               className="w-full rounded-md px-3 py-2 border"
               placeholder="Enter Password"
-              value={password} // ✅ Ensure input value is updated
+              value={password} 
               onChange={(e) => setPassword(e.target.value)}
               required
             />

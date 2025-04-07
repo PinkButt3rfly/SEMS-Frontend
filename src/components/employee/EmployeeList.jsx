@@ -19,7 +19,7 @@ const EmployeeList = () => {
         const fetchEmployees = async () => {
             setEmpLoading(true)
             try {
-                const response = await axios.get('http://localhost:3000/api/employee', {
+                const response = await axios.get('https://sems-backend.vercel.app/api/employee', {
                     headers: {
                         "Authorization" : `Bearer ${localStorage.getItem('token')}`
                     }
@@ -34,7 +34,7 @@ const EmployeeList = () => {
                         name: emp.userId ? emp.userId.name : "No Name",  // 
                         dob: emp.dob ? new Date(emp.dob).toLocaleDateString() : "No DOB",
                         profileImage: emp.userId && emp.userId.profileImage
-                        ? <img src={`http://localhost:3000/${emp.userId.profileImage}`} alt="Profile" className="w-12 h-12 object-cover rounded-full" />
+                        ? <img src={`https://sems-backend.vercel.app/${emp.userId.profileImage}`} alt="Profile" className="w-12 h-12 object-cover rounded-full" />
                         : <img src="path_to_default_image.jpg" alt="Default Profile" className="rounded-full" />,
                         actions: (<EmployeeButtons Id={emp._id} />)
                     }));
