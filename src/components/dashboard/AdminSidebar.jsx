@@ -1,23 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { FaTachometerAlt, FaBuilding, FaUsers, FaCalendarAlt, FaMoneyBill, FaCogs, FaBars, FaTimes } from 'react-icons/fa';
+import { FaTachometerAlt, FaBuilding, FaUsers, FaCalendarAlt, FaMoneyBill, FaCogs } from 'react-icons/fa';
 
 const AdminSidebar = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true); 
-  
   return (
-    <div className={`bg-gray-800 text-white h-screen fixed left-0 top-0 bottom-0 ${isSidebarOpen ? 'w-64' : 'w-0'} transition-all md:w-64`}>
-      <div className="bg-pink-600 h-12 flex items-center justify-between px-4 md:px-6">
+    <div className="bg-gray-800 text-white h-screen fixed left-0 top-0 bottom-0 w-full sm:w-64 md:w-64 lg:w-64 xl:w-64">
+      <div className="bg-pink-600 h-12 flex items-center justify-center text-white">
         <h3 className="text-2xl text-center font-poppins">Employee MS</h3>
-        
-        <button 
-          className="md:hidden text-white"
-          onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-        >
-          {isSidebarOpen ? <FaTimes /> : <FaBars />}
-        </button>
       </div>
-      <div className={`px-4 mt-4 ${isSidebarOpen ? 'block' : 'hidden md:block'}`}>
+      <div className="px-4 mt-4 space-y-2">
         <NavLink
           to="/admin-dashboard"
           className={({ isActive }) => `${isActive ? 'bg-pink-600 ' : ' '}flex items-center space-x-4 block py-2.5 px-4 rounded`}
