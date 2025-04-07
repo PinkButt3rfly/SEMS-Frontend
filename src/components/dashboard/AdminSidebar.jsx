@@ -20,9 +20,9 @@ const AdminSidebar = () => {
 
       {/* Sidebar */}
       <div
-        className={`bg-gray-800 text-white h-screen fixed lg:relative left-0 top-0 bottom-0 w-64 transition-all duration-300 ease-in-out ${
+        className={`bg-gray-800 text-white h-screen fixed left-0 top-0 bottom-0 w-64 transition-all duration-300 ease-in-out ${
           isOpen ? 'translate-x-0' : '-translate-x-full'
-        } lg:translate-x-0`}
+        } lg:translate-x-0 z-50`}
       >
         <div className="bg-pink-600 h-12 flex items-center justify-center text-white">
           <h3 className="text-2xl text-center font-poppins">Employee MS</h3>
