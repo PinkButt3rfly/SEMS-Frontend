@@ -1,25 +1,29 @@
-import React from 'react'
-import { useAuth } from '../context/authContext'
-import AdminSidebar from '../components/dashboard/AdminSidebar'
-import Navbar from '../components/dashboard/Navbar'
-import AdminMain from '../components/dashboard/AdminMain'
-import { Outlet } from 'react-router-dom'
-
-
+import React, { useState } from 'react';
+import { useAuth } from '../context/authContext';
+import AdminSidebar from '../components/dashboard/AdminSidebar';
+import Navbar from '../components/dashboard/Navbar';
+import { Outlet } from 'react-router-dom';
 
 const AdminDashboard = () => {
-  const {user} = useAuth()
+  const { user } = useAuth();
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
- 
   return (
     <div className="flex">
-      <AdminSidebar />
-      <div className="flex-1 ml-64 h-screen bg-gray-200">
-        <Navbar />
-        <Outlet />
+      
+      <AdminSidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+      
+      <div className={`flex-1 h-screen bg-gray-200 transition-all ${sidebarOpen ? 'ml-64' : 'ml-0'} md:ml-64`}>
+        
+        <Navbar setSidebarOpen={setSidebarOpen} />
+
+        
+        <div className="p-4">
+          <Outlet />
+        </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default AdminDashboard
+export default AdminDashboard;
