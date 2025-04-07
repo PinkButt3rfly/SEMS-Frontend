@@ -183,3 +183,4 @@ const AddSalary = () => {
 };
 
 export default AddSalary;
+

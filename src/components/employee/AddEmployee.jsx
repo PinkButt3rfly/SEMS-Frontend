@@ -1,15 +1,12 @@
-import React from 'react'
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { fetchDepartments } from '../../utils/EmployeeHelper'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
-
-
 const AddEmployee = () => {
     const [departments, setDepartments] = useState([])
     const [formData, setFormData] = useState({})
-    const navigate = useNavigate([])
+    const navigate = useNavigate()
 
     useEffect(() => {
         const getDepartments = async () => {
@@ -23,7 +20,6 @@ const AddEmployee = () => {
         const {name, value, files} = e.target
         if(name === "image") {
             setFormData((prevData) => ({...prevData, [name] : files[0] }))
-    
         } else {
             setFormData((prevData) => ({...prevData, [name] : value}))
         }
@@ -48,12 +44,12 @@ const AddEmployee = () => {
                 navigate('/admin-dashboard/employees')
             }
         } catch(error) {
-            
             if(error.response && !error.response.data.success) {
                 alert(error.response.data.error)
             }
         }
     }
+
   return (
     <div className="max-w-4xl mx-auto mt-10 bg-white p-8 rounded-md shadow-md">
       <h2 className="text-2xl font-bold mb-6">Add New Employee</h2>
@@ -152,7 +148,7 @@ const AddEmployee = () => {
                   >
                       <option value="">Select Status</option>
                       <option value="single">Single</option>
-                      <option value="married">Maried</option>
+                      <option value="married">Married</option>
                   </select>
               </div>
 

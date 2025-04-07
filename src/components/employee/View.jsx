@@ -25,7 +25,7 @@ const View = () => {
             }
         };
         fetchEmployee();
-    }, []);
+    }, [id]);
 
     return (
         <>
@@ -33,20 +33,18 @@ const View = () => {
                 <div className="max-w-4xl mx-auto mt-10 bg-white p-8 rounded-md shadow-md">
                     <h2 className="text-2xl font-bold mb-8 text-center">Employee Details</h2>
                     
-                    
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
-                        
-                        
+                        {/* Profile Image Section */}
                         <div className="flex justify-center md:justify-start">
                             <img 
                                 src={`https://sems-backend.onrender.com/${employee.userId.profileImage}`} 
                                 alt="profile"
-                                className="w-72 rounded-full "
+                                className="w-72 rounded-full object-cover"
                             />
                         </div>
 
-                        
-                        <div >
+                        {/* Employee Info Section */}
+                        <div>
                             <div className="flex space-x-3 mb-2">
                                 <p className="text-lg font-bold">Name:</p>
                                 <p className="font-medium">{employee.userId.name}</p>

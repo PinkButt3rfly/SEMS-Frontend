@@ -5,7 +5,7 @@ import axios from 'axios';
 const LeaveDetails = () => {
     const { id } = useParams();
     const [leave, setLeave] = useState(null);
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchLeave = async () => {
@@ -26,7 +26,7 @@ const LeaveDetails = () => {
             }
         };
         fetchLeave();
-    }, []);
+    }, [id]);
 
     const changeStatus = async (id, status) => {
         try {
@@ -37,35 +37,33 @@ const LeaveDetails = () => {
             });
 
             if (response.data.success) {
-                navigate('/admin-dashboard/leaves')
+                navigate('/admin-dashboard/leaves');
             }
         } catch (error) {
             if (error.response && !error.response.data.success) {
                 alert(error.response.data.error);
             }
         }
-    }
+    };
 
     return (
         <>
             {leave ? (
                 <div className="max-w-4xl mx-auto mt-10 bg-white p-8 rounded-md shadow-md">
                     <h2 className="text-2xl font-bold mb-8 text-center">Leave Details</h2>
-                    
-                    
+
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
-                        
-                        
+                        {/* Profile Image */}
                         <div className="flex justify-center md:justify-start">
                             <img 
                                 src={`https://sems-backend.onrender.com/${leave.employeeId.userId.profileImage}`} 
                                 alt="profile"
-                                className="w-72 rounded-full "
+                                className="w-72 rounded-full"
                             />
                         </div>
 
-                        
-                        <div >
+                        {/* Leave Details */}
+                        <div>
                             <div className="flex space-x-3 mb-2">
                                 <p className="text-lg font-bold">Name:</p>
                                 <p className="font-medium">{leave.employeeId.userId.name}</p>
@@ -86,8 +84,8 @@ const LeaveDetails = () => {
                                 <p className="font-medium">{leave.reason}</p>
                             </div>
 
-                            <div className="flex space-x-3">
-                                <p className="text-lg font-bold mb-2">Department:</p>
+                            <div className="flex space-x-3 mb-2">
+                                <p className="text-lg font-bold">Department:</p>
                                 <p className="font-medium">{leave.employeeId.department.dep_name}</p>
                             </div>
 
@@ -108,14 +106,14 @@ const LeaveDetails = () => {
                                 {leave.status === "Pending" ? (
                                     <div className="flex space-x-2">
                                         <button 
-                                        className="px-2 py-1 bg-green-700 text-white hover:bg-green-500 rounded-md"
-                                        onClick={() => changeStatus(leave._id, "Approved")}
+                                            className="px-2 py-1 bg-green-700 text-white hover:bg-green-500 rounded-md"
+                                            onClick={() => changeStatus(leave._id, "Approved")}
                                         >
                                             Approve
                                         </button>
                                         <button 
-                                        className="px-2 py-1 bg-red-700 text-white hover:bg-red-500 rounded-md"
-                                        onClick={() => changeStatus(leave._id, "Rejected")}
+                                            className="px-2 py-1 bg-red-700 text-white hover:bg-red-500 rounded-md"
+                                            onClick={() => changeStatus(leave._id, "Rejected")}
                                         >
                                             Reject
                                         </button>
@@ -123,7 +121,6 @@ const LeaveDetails = () => {
                                 ) :
                                 <p className="font-medium">{leave.status}</p>
                             } 
-                                
                             </div>
                         </div>
                     </div>
