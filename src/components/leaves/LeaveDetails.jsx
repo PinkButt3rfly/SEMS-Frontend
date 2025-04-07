@@ -10,7 +10,7 @@ const LeaveDetails = () => {
     useEffect(() => {
         const fetchLeave = async () => {
             try {
-                const response = await axios.get(`https://sems-backend.vercel.app/api/leave/details/${id}`, {
+                const response = await axios.get(`https://sems-backend.onrender.com/api/leave/details/${id}`, {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem('token')}`,
                     },
@@ -30,7 +30,7 @@ const LeaveDetails = () => {
 
     const changeStatus = async (id, status) => {
         try {
-            const response = await axios.put(`https://sems-backend.vercel.app/api/leave/${id}`, {status}, {
+            const response = await axios.put(`https://sems-backend.onrender.com/api/leave/${id}`, {status}, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
                 },
@@ -58,7 +58,7 @@ const LeaveDetails = () => {
                         
                         <div className="flex justify-center md:justify-start">
                             <img 
-                                src={`https://sems-backend.vercel.app/${leave.employeeId.userId.profileImage}`} 
+                                src={`https://sems-backend.onrender.com/${leave.employeeId.userId.profileImage}`} 
                                 alt="profile"
                                 className="w-72 rounded-full "
                             />

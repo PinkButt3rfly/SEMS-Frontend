@@ -14,7 +14,7 @@ const LeaveTable = () => {
 
     const fetchLeaves = async () => {
         try {
-            const response = await axios.get('https://sems-backend.vercel.app/api/leave', {
+            const response = await axios.get('https://sems-backend.onrender.com/api/leave', {
                 headers: {
                     "Authorization" : `Bearer ${localStorage.getItem('token')}`
                 }

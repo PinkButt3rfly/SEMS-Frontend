@@ -12,7 +12,7 @@ const AdminMain = () => {
   useEffect(() => {
     const fetchSummary = async () => {
       try {
-        const summary = await axios.get('https://sems-backend.vercel.app/api/dashboard/summary', {
+        const summary = await axios.get('https://sems-backend.onrender.com/api/dashboard/summary', {
           headers : {
             "Authorization" : `Bearer ${localStorage.getItem('token')}`
           }

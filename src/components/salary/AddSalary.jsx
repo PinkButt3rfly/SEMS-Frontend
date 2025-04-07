@@ -42,7 +42,7 @@ const AddSalary = () => {
 
         try {
             const response = await axios.post(
-                `https://sems-backend.vercel.app/api/salary/add`,
+                `https://sems-backend.onrender.com/api/salary/add`,
                 salary,
                 {
                     headers: {

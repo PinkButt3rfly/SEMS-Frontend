@@ -15,7 +15,7 @@ const Login = () => {
     setError(null); 
 
     try {
-      const response = await axios.post("https://sems-backend.vercel.app/api/auth/login", {
+      const response = await axios.post("https://sems-backend.onrender.com/api/auth/login", {
         email,
         password,
       }); 
@@ -34,8 +34,9 @@ const Login = () => {
     } catch (error) {
 
       if (error.response && error.response.data) {
-        setError(error.response.data.error);
+        setError(error.response.data.error)
       } else {
+        console.log(data);
         setError("Server Error. Please try again.");
       }
     }
