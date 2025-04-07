@@ -13,9 +13,9 @@ const AdminDashboard = () => {
       
       
       <div
-        className={`md:w-64 w-full bg-gray-800 text-white transition-all duration-300 ease-in-out ${
+        className={`md:w-64 w-full bg-gray-800 text-white fixed top-0 left-0 h-full transition-all duration-300 ease-in-out ${
           isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
-        } md:translate-x-0 fixed md:relative z-50`}
+        } md:translate-x-0 z-50`} 
       >
         <AdminSidebar />
       </div>

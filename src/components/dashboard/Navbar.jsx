@@ -10,7 +10,7 @@ const Navbar = ({ setSidebarOpen }) => {
       
       <button 
         className="md:hidden text-white" 
-        onClick={() => setSidebarOpen(prev => !prev)}
+        onClick={() => setSidebarOpen(prev => !prev)} 
       >
         <FaBars />
       </button>
