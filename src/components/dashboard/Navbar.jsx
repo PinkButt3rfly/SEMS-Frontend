@@ -7,20 +7,18 @@ const Navbar = ({ setSidebarOpen }) => {
 
   return (
     <div className="flex items-center justify-between h-12 bg-pink-600 text-white px-4">
-      {/* Hamburger Icon for Mobile */}
+      
       <button 
         className="md:hidden text-white" 
         onClick={() => setSidebarOpen(prev => !prev)}
       >
-        <FaBars /> 
+        <FaBars />
       </button>
 
-      {/* Welcome Message */}
-      <p className="flex-1 text-center sm:text-left truncate">
-        Welcome {user.name}
-      </p>
+      
+      <p className="flex-1 text-center sm:text-left">Welcome {user.name}</p>
 
-      {/* Logout Button */}
+      
       <button 
         className="px-4 py-1 bg-gray-800 rounded-md hover:bg-pink-800 mr-6"
         onClick={logout}
