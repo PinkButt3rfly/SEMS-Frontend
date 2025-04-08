@@ -30,7 +30,7 @@ const LeaveDetails = () => {
 
     const changeStatus = async (id, status) => {
         try {
-            const response = await axios.put(`https://sems-backend.onrender.com/api/leave/${id}`, {status}, {
+            const response = await axios.put(`https://sems-backend.onrender.com/api/leave/${id}`, { status }, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
                 },
@@ -46,87 +46,67 @@ const LeaveDetails = () => {
         }
     };
 
+    const Info = ({ label, value }) => (
+        <div className="flex gap-2 flex-wrap">
+            <p className="text-base font-semibold">{label}:</p>
+            <p className="text-base">{value}</p>
+        </div>
+    );
+
     return (
         <>
             {leave ? (
-                <div className="max-w-4xl mx-auto mt-10 bg-white p-8 rounded-md shadow-md">
-                    <h2 className="text-2xl font-bold mb-8 text-center">Leave Details</h2>
+                <div className="max-w-7xl mx-auto mt-10 px-4 sm:px-6 lg:px-8">
+                    <div className="bg-white p-6 sm:p-10 rounded-md shadow-md">
+                        <h2 className="text-2xl font-bold mb-8 text-center">Leave Details</h2>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
-                        {/* Profile Image */}
-                        <div className="flex justify-center md:justify-start">
-                            <img 
-                                src={`https://sems-backend.onrender.com/${leave.employeeId.userId.profileImage}`} 
-                                alt="profile"
-                                className="w-72 rounded-full"
-                            />
-                        </div>
-
-                        {/* Leave Details */}
-                        <div>
-                            <div className="flex space-x-3 mb-2">
-                                <p className="text-lg font-bold">Name:</p>
-                                <p className="font-medium">{leave.employeeId.userId.name}</p>
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+                            {/* Profile Image */}
+                            <div className="flex justify-center lg:justify-start">
+                                <img 
+                                    src={`https://sems-backend.onrender.com/${leave.employeeId.userId.profileImage}`} 
+                                    alt="profile"
+                                    className="w-48 sm:w-60 md:w-72 rounded-full object-cover"
+                                />
                             </div>
 
-                            <div className="flex space-x-3 mb-2">
-                                <p className="text-lg font-bold">Employee ID:</p>
-                                <p className="font-medium">{leave.employeeId.employeeId}</p>
-                            </div>
+                            {/* Leave Info */}
+                            <div className="space-y-3">
+                                <Info label="Name" value={leave.employeeId.userId.name} />
+                                <Info label="Employee ID" value={leave.employeeId.employeeId} />
+                                <Info label="Leave Type" value={leave.leaveType} />
+                                <Info label="Reason" value={leave.reason} />
+                                <Info label="Department" value={leave.employeeId.department.dep_name} />
+                                <Info label="Start Date" value={new Date(leave.startDate).toLocaleDateString()} />
+                                <Info label="End Date" value={new Date(leave.endDate).toLocaleDateString()} />
 
-                            <div className="flex space-x-3 mb-2">
-                                <p className="text-lg font-bold">Leave Type:</p>
-                                <p className="font-medium">{leave.leaveType}</p>
-                            </div>
-
-                            <div className="flex space-x-3 mb-2">
-                                <p className="text-lg font-bold">Reason:</p>
-                                <p className="font-medium">{leave.reason}</p>
-                            </div>
-
-                            <div className="flex space-x-3 mb-2">
-                                <p className="text-lg font-bold">Department:</p>
-                                <p className="font-medium">{leave.employeeId.department.dep_name}</p>
-                            </div>
-
-                            <div className="flex space-x-3 mb-2">
-                                <p className="text-lg font-bold">Start Date:</p>
-                                <p className="font-medium">{new Date(leave.startDate).toLocaleDateString()}</p>
-                            </div>
-
-                            <div className="flex space-x-3 mb-2">
-                                <p className="text-lg font-bold">End Date:</p>
-                                <p className="font-medium">{new Date(leave.endDate).toLocaleDateString()}</p>
-                            </div>
-
-                            <div className="flex space-x-3 mb-2">
-                                <p className="text-lg font-bold">
-                                    {leave.status === "Pending" ? "Action:" : "Status:"}
-                                </p>
-                                {leave.status === "Pending" ? (
-                                    <div className="flex space-x-2">
-                                        <button 
-                                            className="px-2 py-1 bg-green-700 text-white hover:bg-green-500 rounded-md"
-                                            onClick={() => changeStatus(leave._id, "Approved")}
-                                        >
-                                            Approve
-                                        </button>
-                                        <button 
-                                            className="px-2 py-1 bg-red-700 text-white hover:bg-red-500 rounded-md"
-                                            onClick={() => changeStatus(leave._id, "Rejected")}
-                                        >
-                                            Reject
-                                        </button>
-                                    </div>
-                                ) :
-                                <p className="font-medium">{leave.status}</p>
-                            } 
+                                <div className="flex flex-col sm:flex-row sm:items-center gap-2">
+                                    <p className="text-lg font-bold">{leave.status === "Pending" ? "Action:" : "Status:"}</p>
+                                    {leave.status === "Pending" ? (
+                                        <div className="flex gap-3">
+                                            <button 
+                                                className="px-3 py-1 bg-green-700 text-white hover:bg-green-600 rounded-md text-sm"
+                                                onClick={() => changeStatus(leave._id, "Approved")}
+                                            >
+                                                Approve
+                                            </button>
+                                            <button 
+                                                className="px-3 py-1 bg-red-700 text-white hover:bg-red-600 rounded-md text-sm"
+                                                onClick={() => changeStatus(leave._id, "Rejected")}
+                                            >
+                                                Reject
+                                            </button>
+                                        </div>
+                                    ) : (
+                                        <span className="font-medium text-sm">{leave.status}</span>
+                                    )}
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             ) : (
-                <div className="mt-10">Loading...</div>
+                <div className="mt-10 text-center">Loading...</div>
             )}
         </>
     );

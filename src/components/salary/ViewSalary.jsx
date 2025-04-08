@@ -41,60 +41,59 @@ const ViewSalary = () => {
     };
 
     return (
-        <>
+        <div className="w-full px-3 sm:px-5 md:px-10 py-6">
             {filteredSalaries === null ? (
-                <div>Loading...</div>
+                <div className="text-center text-gray-600">Loading...</div>
             ) : (
-                <div className="overflow-x-auto p-5">
-                    <div className="text-center">
-                        <h2 className="text-2xl font-bold">Salary History</h2>
+                <div className="w-full">
+                    <div className="text-center mb-4">
+                        <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-800">Salary History</h2>
                     </div>
 
-                    <div className="flex justify-end my-3">
-                        {user.role === 'employee' && (
+                    {user.role === 'employee' && (
+                        <div className="flex justify-end mb-3">
                             <input
                                 type="text"
                                 placeholder="Search by Emp ID"
-                                className="border px-2 rounded-md py-0.5 border-gray-300"
+                                className="border px-3 py-1 text-sm rounded-md border-gray-300 focus:outline-none focus:ring-2 focus:ring-pink-500"
                                 onChange={(e) => filterSalaries(e.target.value)}
                             />
-                        )}
-                    </div>
+                        </div>
+                    )}
 
                     {filteredSalaries.length > 0 ? (
-                        <table className="w-full text-sm text-left text-gray-800">
-                            <thead className="text-xs text-gray-800 uppercase bg-gray-80 border border-gray-200">
+                        <table className="w-full text-[10px] sm:text-xs md:text-sm text-gray-700 table-fixed border border-gray-300">
+                            <thead className="bg-gray-100 uppercase text-gray-600">
                                 <tr>
-                                    <th className="px-6 py-3">SNO</th>
-                                    <th className="px-6 py-3">Emp ID</th>
-                                    <th className="px-6 py-3">Salary</th>
-                                    <th className="px-6 py-3">Allowance</th>
-                                    <th className="px-6 py-3">Deduction</th>
-                                    <th className="px-6 py-3">Total</th>
-                                    <th className="px-6 py-3">PayDate</th>
+                                    <th className="px-1 sm:px-2 py-2 w-[6%]">SNO</th>
+                                    <th className="px-1 sm:px-2 py-2 w-[15%]">Emp ID</th>
+                                    <th className="px-1 sm:px-2 py-2 w-[12%]">Salary</th>
+                                    <th className="px-1 sm:px-2 py-2 w-[14%]">Allowance</th>
+                                    <th className="px-1 sm:px-2 py-2 w-[14%]">Deduction</th>
+                                    <th className="px-1 sm:px-2 py-2 w-[12%]">Total</th>
+                                    <th className="px-1 sm:px-2 py-2 w-[17%]">Pay Date</th>
                                 </tr>
                             </thead>
-
                             <tbody>
                                 {filteredSalaries.map((salary) => (
-                                    <tr key={salary.id} className="bg-white border-b dark:bg-gray-300 dark:border-gray-700">
-                                        <td className="px-6 py-3">{sno++}</td>
-                                        <td className="px-6 py-3">{salary.employeeId.employeeId}</td>
-                                        <td className="px-6 py-3">{salary.basicSalary}</td>
-                                        <td className="px-6 py-3">{salary.allowances}</td>
-                                        <td className="px-6 py-3">{salary.deductions}</td>
-                                        <td className="px-6 py-3">{salary.netSalary}</td>
-                                        <td className="px-6 py-3">{new Date(salary.payDate).toLocaleDateString()}</td>
+                                    <tr key={salary.id} className="bg-white even:bg-gray-50 border-b">
+                                        <td className="px-1 sm:px-2 py-2 text-center">{sno++}</td>
+                                        <td className="px-1 sm:px-2 py-2 truncate">{salary.employeeId.employeeId}</td>
+                                        <td className="px-1 sm:px-2 py-2">{salary.basicSalary}</td>
+                                        <td className="px-1 sm:px-2 py-2">{salary.allowances}</td>
+                                        <td className="px-1 sm:px-2 py-2">{salary.deductions}</td>
+                                        <td className="px-1 sm:px-2 py-2">{salary.netSalary}</td>
+                                        <td className="px-1 sm:px-2 py-2">{new Date(salary.payDate).toLocaleDateString()}</td>
                                     </tr>
                                 ))}
                             </tbody>
                         </table>
                     ) : (
-                        <div>No Records</div>
+                        <div className="text-center text-gray-500">No Records</div>
                     )}
                 </div>
             )}
-        </>
+        </div>
     );
 };
 
