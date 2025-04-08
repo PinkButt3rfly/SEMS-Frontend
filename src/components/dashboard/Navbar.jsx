@@ -13,7 +13,6 @@ const Navbar = ({ setSidebarOpen }) => {
       >
         <FaBars />
       </button>
-      <p className="flex-1 text-center sm-text-left">Welcome {user.name}</p>
 
       
       <button className="px-4 py-1 bg-gray-800 rounded-md hover:bg-pink-800 mr-6"
