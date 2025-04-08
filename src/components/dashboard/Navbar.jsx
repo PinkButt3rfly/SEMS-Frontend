@@ -5,7 +5,7 @@ import { useAuth } from '../../context/authContext'
 const Navbar = ({ setSidebarOpen }) => {
   const {user, logout} = useAuth()
   return (
-    <div className="flex items-center justify-between h-12 bg-pink-600 text-white px-4">
+    <div className="flex items-center justify-between h-12 bg-pink-600 text-white">
       
       <button
         className="md:hidden text-white"
